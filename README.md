@@ -1,4 +1,4 @@
-# Case Study :: User Access Control: User Data
+# Penjelasan Kasus - Case Study :: User Access Control: User Data
 
 ![Technology - Spring Boot](https://img.shields.io/badge/Technology-Spring_Boot-blue)
 ![Tracing Difficulty - Easy](https://img.shields.io/badge/Tracing_Difficulty-Easy-green)
@@ -35,3 +35,72 @@ Implement a constraint that limits access for both users.
 ## The Expected Result
 
 Each user can only see data owned by themselves.
+
+# Penjelasan Kasus - Case Study :: User Access Control: User Data
+
+# Exsplorasi
+
+## Tools Yang Digunakan
+1. VSCode
+2. Java 17.0.8
+3. Maven 3.9.4
+
+## Running Program
+
+Untuk menjalankan program kami pertama menggunakan IDE Eclipse namun menghadapi masalah anotasi menggunakan library lombok. Sehingga kami menggunakan VSCode untuk menjalankan projeknya.
+
+1. Build projek maven
+```mvn clean install
+```
+2. Running program maven
+```mvn spring-boot:run
+```
+
+## Eksplor di ChatGPT
+
+1. Mencari keyword yang terkait dengan studi kasus dibawah.
+   a. JWT: 
+   b. JWK: 
+   c. Issuer: 
+   d. Audience: 
+   e. Subject: 
+   f. Basic Auth:
+   g. DTO: 
+   h. JPA: 
+   i. H2: 
+2. Mencari cara memisahkan akses terhadap data masing-masing user
+
+# Exsplorasi
+
+# Solusi
+
+1. Menambah atribut userId pada model Note dan DTO Note
+Note
+```public class Note {
+
+  @Id
+  @Column
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
+
+  private String content;
+
+  private String userId;
+
+}
+```
+
+NoteDto
+```public class NoteDto {
+
+  private UUID id;
+
+  private String content;
+
+  private String userId;
+}
+```
+
+2. 
+
+# Solusi
