@@ -37,9 +37,9 @@ Implement a constraint that limits access for both users.
 Each user can only see data owned by themselves.
 
 ## Kondisi Awal
-User A dapat melihat semua data termasuk data User B
+User A dapat melihat semua data termasuk data User B<br/>
 <img width="635" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/9635696d-d292-4989-9164-53c2e2954318"><br/>
-User B dapat melihat semua data termasuk data User A
+User B dapat melihat semua data termasuk data User A<br/>
 <img width="636" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/cb5ec277-2ecb-4f5a-baf6-89282ddcbfb2">
 
 
@@ -66,15 +66,15 @@ mvn spring-boot:run
 ## Eksplor di ChatGPT
 
 ## 1. Mencari keyword yang terkait dengan studi kasus dibawah.
-   ### a. JWT: JWT singkatan dari "JSON Web Token." Merupakan format yang digunakan untuk mengirimkan informasi yang dapat diverifikasi secara aman antara dua pihak. JWT juga  sering digunakan untuk mengamankan komunikasi antara pengguna dan server dalam aplikasi web dan layanan web.
-   ### b. JWK: JWK adalah singkatan dari "JSON Web Key." Ini adalah standar JSON yang digunakan untuk merepresentasikan kunci kriptografi yang digunakan dalam konteks keamanan web, terutama dalam penggunaan seperti JSON Web Tokens (JWT) dan OAuth 2.0. 
-   ### c. Issuer: Issuer adalah entitas yang menghasilkan atau menerbitkan token. Ini biasanya adalah server atau aplikasi yang mengeluarkan token. Issuer digunakan untuk mengidentifikasi sumber atau asal token. Misalnya, jika memiliki aplikasi web yang mengeluarkan token untuk autentikasi, issuer akan mengidentifikasi aplikasi web tersebut sebagai penerbit token.
-   ### d. Audience: Audience adalah penerima atau pemilik yang dimaksudkan untuk menerima token. Ini adalah entitas yang dimaksudkan untuk menggunakan token tersebut. Audience digunakan untuk memastikan bahwa token hanya digunakan oleh entitas yang sah. Misalnya, jika mengeluarkan token untuk aplikasi khusus, audience akan menunjukkan bahwa token tersebut hanya ditujukan untuk aplikasi tersebut.
-   ### e. Subject: Subject adalah subjek atau entitas yang token tersebut mengidentifikasi atau mewakili. Ini adalah informasi tentang pengguna atau objek yang terkait dengan token. Misalnya, jika token digunakan untuk mengautentikasi pengguna, subjeknya bisa berisi nama pengguna atau ID pengguna yang sesuai.
-   ### f. Basic Auth: Basic Authentication (Otentikasi Dasar) adalah metode otentikasi sederhana yang digunakan dalam protokol HTTP untuk mengamankan akses ke sumber daya web atau API dengan mengirimkan kredensial pengguna dalam bentuk username dan password
-   ### g. DTO: DTO adalah singkatan dari "Data Transfer Object." Ini adalah pola desain yang digunakan dalam pengembangan perangkat lunak untuk mengirimkan data antara komponen atau lapisan aplikasi yang berbeda. 
-   ### h. JPA: JPA adalah singkatan dari "Java Persistence API." Ini adalah spesifikasi Java yang mendefinisikan antarmuka standar untuk mengelola data dalam basis data relasional menggunakan bahasa pemrograman Java.
-   ### i. H2: H2 adalah sistem manajemen basis data relasional (RDBMS) yang bersifat open-source dan ditulis dalam bahasa Java. H2 digunakan terutama untuk pengembangan, pengujian, dan aplikasi dengan kebutuhan basis data yang ringan. Meskipun H2 biasanya digunakan dalam pengembangan, beberapa aplikasi juga menggunakan H2 sebagai basis data untuk aplikasi produksi mereka yang lebih kecil atau sederhana.
+   a. JWT: JWT singkatan dari "JSON Web Token." Merupakan format yang digunakan untuk mengirimkan informasi yang dapat diverifikasi secara aman antara dua pihak. JWT juga  sering digunakan untuk mengamankan komunikasi antara pengguna dan server dalam aplikasi web dan layanan web.<br/>
+   b. JWK: JWK adalah singkatan dari "JSON Web Key." Ini adalah standar JSON yang digunakan untuk merepresentasikan kunci kriptografi yang digunakan dalam konteks keamanan web, terutama dalam penggunaan seperti JSON Web Tokens (JWT) dan OAuth 2.0.<br/>
+   c. Issuer: Issuer adalah entitas yang menghasilkan atau menerbitkan token. Ini biasanya adalah server atau aplikasi yang mengeluarkan token. Issuer digunakan untuk mengidentifikasi sumber atau asal token. Misalnya, jika memiliki aplikasi web yang mengeluarkan token untuk autentikasi, issuer akan mengidentifikasi aplikasi web tersebut sebagai penerbit token. <br/>
+   d. Audience: Audience adalah penerima atau pemilik yang dimaksudkan untuk menerima token. Ini adalah entitas yang dimaksudkan untuk menggunakan token tersebut. Audience digunakan untuk memastikan bahwa token hanya digunakan oleh entitas yang sah. Misalnya, jika mengeluarkan token untuk aplikasi khusus, audience akan menunjukkan bahwa token tersebut hanya ditujukan untuk aplikasi tersebut.<br/>
+   e. Subject: Subject adalah subjek atau entitas yang token tersebut mengidentifikasi atau mewakili. Ini adalah informasi tentang pengguna atau objek yang terkait dengan token. Misalnya, jika token digunakan untuk mengautentikasi pengguna, subjeknya bisa berisi nama pengguna atau ID pengguna yang sesuai.<br/>
+   f. Basic Auth: Basic Authentication (Otentikasi Dasar) adalah metode otentikasi sederhana yang digunakan dalam protokol HTTP untuk mengamankan akses ke sumber daya web atau API dengan mengirimkan kredensial pengguna dalam bentuk username dan password.<br/>
+   g. DTO: DTO adalah singkatan dari "Data Transfer Object." Ini adalah pola desain yang digunakan dalam pengembangan perangkat lunak untuk mengirimkan data antara komponen atau lapisan aplikasi yang berbeda. <br/>
+   h. JPA: JPA adalah singkatan dari "Java Persistence API." Ini adalah spesifikasi Java yang mendefinisikan antarmuka standar untuk mengelola data dalam basis data relasional menggunakan bahasa pemrograman Java.<br/>
+   i. H2: H2 adalah sistem manajemen basis data relasional (RDBMS) yang bersifat open-source dan ditulis dalam bahasa Java. H2 digunakan terutama untuk pengembangan, pengujian, dan aplikasi dengan kebutuhan basis data yang ringan. Meskipun H2 biasanya digunakan dalam pengembangan, beberapa aplikasi juga menggunakan H2 sebagai basis data untuk aplikasi produksi mereka yang lebih kecil atau sederhana. <br/>
 ## 2. Mencari cara memisahkan akses terhadap data masing-masing user
 
 # Solusi
