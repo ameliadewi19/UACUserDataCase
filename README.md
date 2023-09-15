@@ -38,8 +38,7 @@ Each user can only see data owned by themselves.
 
 ## Kondisi Awal
 User A dapat melihat semua data termasuk data User B
-<img width="635" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/9635696d-d292-4989-9164-53c2e2954318">
-
+<img width="635" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/9635696d-d292-4989-9164-53c2e2954318"><br/>
 User B dapat melihat semua data termasuk data User A
 <img width="636" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/cb5ec277-2ecb-4f5a-baf6-89282ddcbfb2">
 
