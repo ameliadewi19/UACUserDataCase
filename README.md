@@ -79,7 +79,7 @@ mvn spring-boot:run
 
 # Solusi
 
-## 1. Menambah atribut userId pada model Note dan DTO Note
+### 1. Menambah atribut userId pada model Note dan DTO Note
 Note
 ```
 public class Note {
@@ -108,7 +108,7 @@ public class NoteDto {
 }
 ```
 
-## 2. Menambahkan fungsi findByUserId untuk mengambil data berdasarkan ID user, serta mengimport java.util.list
+### 2. Menambahkan fungsi findByUserId untuk mengambil data berdasarkan ID user, serta mengimport java.util.list
 ```
 import java.util.List;
 
@@ -118,7 +118,7 @@ public interface NoteRepo extends JpaRepository<Note, UUID> {
 }
 ```
 
-## 3. Mengubah fungsi get dan post di NoteController, dan import import org.springframework.security.core.Authentication;
+### 3. Mengubah fungsi get dan post di NoteController, dan import import org.springframework.security.core.Authentication;
 Get
 ```
 @GetMapping
