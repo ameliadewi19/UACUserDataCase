@@ -54,7 +54,7 @@ User B dapat melihat semua data termasuk data User A<br/>
 
 Untuk menjalankan program kami pertama menggunakan IDE Eclipse namun menghadapi masalah anotasi menggunakan library lombok. Sehingga kami menggunakan VSCode untuk menjalankan projeknya.
 
-## 1. Build projek maven
+### 1. Build projek maven
 ```
 mvn clean install
 ```
