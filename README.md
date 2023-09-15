@@ -65,7 +65,8 @@ mvn spring-boot:run
 
 ## Eksplor di ChatGPT
 
-1. Mencari keyword yang terkait dengan studi kasus dibawah. <br/><br/>
+### 1. Mencari keyword yang terkait dengan studi kasus dibawah. <br/><br/>
+
    a. JWT: JWT singkatan dari "JSON Web Token." Merupakan format yang digunakan untuk mengirimkan informasi yang dapat diverifikasi secara aman antara dua pihak. JWT juga  sering digunakan untuk mengamankan komunikasi antara pengguna dan server dalam aplikasi web dan layanan web.<br/><br/>
    b. JWK: JWK adalah singkatan dari "JSON Web Key." Ini adalah standar JSON yang digunakan untuk merepresentasikan kunci kriptografi yang digunakan dalam konteks keamanan web, terutama dalam penggunaan seperti JSON Web Tokens (JWT) dan OAuth 2.0.<br/><br/>
    c. Issuer: Issuer adalah entitas yang menghasilkan atau menerbitkan token. Ini biasanya adalah server atau aplikasi yang mengeluarkan token. Issuer digunakan untuk mengidentifikasi sumber atau asal token. Misalnya, jika memiliki aplikasi web yang mengeluarkan token untuk autentikasi, issuer akan mengidentifikasi aplikasi web tersebut sebagai penerbit token. <br/><br/>
@@ -75,7 +76,8 @@ mvn spring-boot:run
    g. DTO: DTO adalah singkatan dari "Data Transfer Object." Ini adalah pola desain yang digunakan dalam pengembangan perangkat lunak untuk mengirimkan data antara komponen atau lapisan aplikasi yang berbeda. <br/><br/>
    h. JPA: JPA adalah singkatan dari "Java Persistence API." Ini adalah spesifikasi Java yang mendefinisikan antarmuka standar untuk mengelola data dalam basis data relasional menggunakan bahasa pemrograman Java.<br/><br/>
    i. H2: H2 adalah sistem manajemen basis data relasional (RDBMS) yang bersifat open-source dan ditulis dalam bahasa Java. H2 digunakan terutama untuk pengembangan, pengujian, dan aplikasi dengan kebutuhan basis data yang ringan. Meskipun H2 biasanya digunakan dalam pengembangan, beberapa aplikasi juga menggunakan H2 sebagai basis data untuk aplikasi produksi mereka yang lebih kecil atau sederhana. <br/><br/>
-2. Mencari cara memisahkan akses terhadap data masing-masing user<br/><br/>
+   
+### 2. Mencari cara memisahkan akses terhadap data masing-masing user<br/><br/>
 
 # Solusi
 
