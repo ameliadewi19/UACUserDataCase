@@ -1,6 +1,7 @@
 package com.tujuhsembilan.example.controller;
 
 import java.util.stream.Collectors;
+import java.util.List;
 import java.util.Set;
 
 import org.modelmapper.ModelMapper;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tujuhsembilan.example.controller.dto.NoteDto;
+import com.tujuhsembilan.example.controller.dto.RequestNoteDto;
 import com.tujuhsembilan.example.model.Note;
 import com.tujuhsembilan.example.repository.NoteRepo;
 
@@ -31,34 +33,32 @@ public class NoteController {
 
   @GetMapping
   public ResponseEntity<?> getNotes(Authentication authentication) {
-    String userId = authentication.getName();
+    String username = authentication.getName();
 
-    Set<NoteDto> userNotes = repo.findByUserId(userId)
-            .stream()
-            .map(note -> {
-                NoteDto noteDto = mdlMap.map(note, NoteDto.class);
-                noteDto.setUserId(userId); // Atur userId di NoteDto
-                return noteDto;
-            })
-            .collect(Collectors.toSet());
+    List<Note> noteList = repo.findAll();
 
-    return ResponseEntity.ok(userNotes);
+    Set<NoteDto> userNotes = noteList.stream()
+        .filter(note -> note.getUsername().equals(username))
+        .map(note -> {
+            NoteDto noteDto = mdlMap.map(note, NoteDto.class);
+            noteDto.setUsername(username); 
+            return noteDto;
+        })
+        .collect(Collectors.toSet());
+
+    if (!userNotes.isEmpty()) {
+        return ResponseEntity.ok(userNotes);
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tidak ada catatan ditemukan.");
+    }
   }
 
   @PostMapping
-  public ResponseEntity<?> saveNote(@RequestBody NoteDto body, Authentication authentication) {
+  public ResponseEntity<?> saveNote(@RequestBody RequestNoteDto body, Authentication authentication) {
     var newNote = mdlMap.map(body, Note.class);
-
-    // Mendapatkan username pengguna yang sedang login
-    String userId = authentication.getName();
-
-    // Menetapkan userId pada NoteDto
-    body.setUserId(userId);
-
-    // Menetapkan userId pada objek newNote juga
-    newNote.setUserId(userId);
-
     newNote = repo.save(newNote);
+
+    // System.out.println(newNote);
     return ResponseEntity.status(HttpStatus.CREATED).body(newNote);
   }
 

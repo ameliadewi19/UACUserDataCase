@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NoteDto {
+public class RequestNoteDto {
 
   private UUID id;
 
   private String content;
-
-  private String username;
 }
