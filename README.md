@@ -75,9 +75,9 @@ mvn spring-boot:run
    f. Basic Auth: Basic Authentication (Otentikasi Dasar) adalah metode otentikasi sederhana yang digunakan dalam protokol HTTP untuk mengamankan akses ke sumber daya web atau API dengan mengirimkan kredensial pengguna dalam bentuk username dan password.<br/><br/>
    g. DTO: DTO adalah singkatan dari "Data Transfer Object." Ini adalah pola desain yang digunakan dalam pengembangan perangkat lunak untuk mengirimkan data antara komponen atau lapisan aplikasi yang berbeda. <br/><br/>
    h. JPA: JPA adalah singkatan dari "Java Persistence API." Ini adalah spesifikasi Java yang mendefinisikan antarmuka standar untuk mengelola data dalam basis data relasional menggunakan bahasa pemrograman Java.<br/><br/>
-   i. OAuth2: OAuth (Open Authorization) adalah protokol otentikasi terbuka yang digunakan untuk memberikan izin kepada aplikasi pihak ketiga untuk mengakses sumber daya yang terlindungi atas nama pengguna tanpa harus mengungkapkan kata sandi pengguna yang sebenarnya.
-   j. @PrePersist: digunakan untuk menandai metode yang harus dijalankan sebelum entitas disimpan pertama kali ke dalam basis data (pada saat pembuatan baru). Metode yang dianotasi dengan @PrePersist akan dijalankan sebelum entitas dipersist (disimpan) ke basis data.
-   k. @PreUpdate: digunakan untuk menandai metode yang harus dijalankan sebelum entitas diperbarui dalam basis data (pada saat proses pembaruan). Metode yang dianotasi dengan @PreUpdate akan dijalankan sebelum entitas diperbarui.
+   i. OAuth2: OAuth (Open Authorization) adalah protokol otentikasi terbuka yang digunakan untuk memberikan izin kepada aplikasi pihak ketiga untuk mengakses sumber daya yang terlindungi atas nama pengguna tanpa harus mengungkapkan kata sandi pengguna yang sebenarnya.<br/><br/>
+   j. @PrePersist: digunakan untuk menandai metode yang harus dijalankan sebelum entitas disimpan pertama kali ke dalam basis data (pada saat pembuatan baru). Metode yang dianotasi dengan @PrePersist akan dijalankan sebelum entitas dipersist (disimpan) ke basis data.<br/><br/>
+   k. @PreUpdate: digunakan untuk menandai metode yang harus dijalankan sebelum entitas diperbarui dalam basis data (pada saat proses pembaruan). Metode yang dianotasi dengan @PreUpdate akan dijalankan sebelum entitas diperbarui.<br/><br/>
    
 ### 2. Mencari cara memisahkan akses terhadap data masing-masing user<br/><br/>
 
