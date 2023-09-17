@@ -8,13 +8,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.PostLoad;
-import jakarta.persistence.PostPersist;
-import jakarta.persistence.PostUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 
@@ -33,19 +31,12 @@ public class Note {
   private String content;
 
   private String username;
-
-  @PostLoad
-  @PostPersist
-  @PostUpdate
+  
+  @PrePersist
+  @PreUpdate
   private void populateUsername() {
-    this.username = getUsernameFromJwt();
-    System.out.println(this.username);
+      String username = SecurityContextHolder.getContext().getAuthentication().getName();
+      this.username = username;
   }
-
-  private String getUsernameFromJwt() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    String username = authentication.getName();
-    return username;
-  }
-
+  
 }
