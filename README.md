@@ -75,13 +75,15 @@ mvn spring-boot:run
    f. Basic Auth: Basic Authentication (Otentikasi Dasar) adalah metode otentikasi sederhana yang digunakan dalam protokol HTTP untuk mengamankan akses ke sumber daya web atau API dengan mengirimkan kredensial pengguna dalam bentuk username dan password.<br/><br/>
    g. DTO: DTO adalah singkatan dari "Data Transfer Object." Ini adalah pola desain yang digunakan dalam pengembangan perangkat lunak untuk mengirimkan data antara komponen atau lapisan aplikasi yang berbeda. <br/><br/>
    h. JPA: JPA adalah singkatan dari "Java Persistence API." Ini adalah spesifikasi Java yang mendefinisikan antarmuka standar untuk mengelola data dalam basis data relasional menggunakan bahasa pemrograman Java.<br/><br/>
-   i. H2: H2 adalah sistem manajemen basis data relasional (RDBMS) yang bersifat open-source dan ditulis dalam bahasa Java. H2 digunakan terutama untuk pengembangan, pengujian, dan aplikasi dengan kebutuhan basis data yang ringan. Meskipun H2 biasanya digunakan dalam pengembangan, beberapa aplikasi juga menggunakan H2 sebagai basis data untuk aplikasi produksi mereka yang lebih kecil atau sederhana. <br/><br/>
+   i. OAuth2: 
    
 ### 2. Mencari cara memisahkan akses terhadap data masing-masing user<br/><br/>
 
 # Solusi
 
-### 1. Menambah atribut userId pada model Note dan DTO Note
+### 1. Menambah DTO untuk post dengan nama RequestNoteDto
+
+
 Note
 ```
 public class Note {
