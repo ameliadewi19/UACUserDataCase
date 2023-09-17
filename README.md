@@ -218,6 +218,3 @@ User A hanya bisa melihat data user A menggunakan token JWT<br/>
 
 User B hanya bisa melihat data user B menggunakan token JWT<br/>
 <img width="638" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/335ba951-3496-40b1-acbb-bb208083b094">
-
-
-
