@@ -75,17 +75,84 @@ mvn spring-boot:run
    f. Basic Auth: Basic Authentication (Otentikasi Dasar) adalah metode otentikasi sederhana yang digunakan dalam protokol HTTP untuk mengamankan akses ke sumber daya web atau API dengan mengirimkan kredensial pengguna dalam bentuk username dan password.<br/><br/>
    g. DTO: DTO adalah singkatan dari "Data Transfer Object." Ini adalah pola desain yang digunakan dalam pengembangan perangkat lunak untuk mengirimkan data antara komponen atau lapisan aplikasi yang berbeda. <br/><br/>
    h. JPA: JPA adalah singkatan dari "Java Persistence API." Ini adalah spesifikasi Java yang mendefinisikan antarmuka standar untuk mengelola data dalam basis data relasional menggunakan bahasa pemrograman Java.<br/><br/>
-   i. OAuth2: 
+   i. OAuth2: OAuth (Open Authorization) adalah protokol otentikasi terbuka yang digunakan untuk memberikan izin kepada aplikasi pihak ketiga untuk mengakses sumber daya yang terlindungi atas nama pengguna tanpa harus mengungkapkan kata sandi pengguna yang sebenarnya.
    
 ### 2. Mencari cara memisahkan akses terhadap data masing-masing user<br/><br/>
 
 # Solusi
 
 ### 1. Menambah DTO untuk post dengan nama RequestNoteDto
-
-
-Note
+RequestNoteDto digunakan agar untuk post method, karena field username akan diisi otomatis di model
 ```
+package com.tujuhsembilan.example.controller.dto;
+
+import java.util.UUID;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class RequestNoteDto {
+
+  private UUID id;
+
+  private String content;
+}
+```
+
+### 2. Mengubah NoteDto
+Menambahkan field username
+```
+package com.tujuhsembilan.example.controller.dto;
+
+import java.util.UUID;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class NoteDto {
+
+  private UUID id;
+
+  private String content;
+
+  private String username;
+}
+```
+
+### 3. Mengubah Model Note
+Menambah anotasi untuk set username pada proses post 
+```
+package com.tujuhsembilan.example.model;
+
+import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table
+@Entity
 public class Note {
 
   @Id
@@ -95,78 +162,62 @@ public class Note {
 
   private String content;
 
-  private String userId;
-
+  private String username;
+  
+  @PrePersist
+  @PreUpdate
+  private void populateUsername() {
+      String username = SecurityContextHolder.getContext().getAuthentication().getName();
+      this.username = username;
+  }
+  
 }
 ```
 
-NoteDto
-```
-public class NoteDto {
-
-  private UUID id;
-
-  private String content;
-
-  private String userId;
-}
-```
-
-### 2. Menambahkan fungsi findByUserId untuk mengambil data berdasarkan ID user, serta mengimport java.util.list
-```
-import java.util.List;
-
-public interface NoteRepo extends JpaRepository<Note, UUID> {
-    // mencari data berdasakan userId
-    List<Note> findByUserId(String userId);
-}
-```
-
-### 3. Mengubah fungsi get dan post di NoteController, dan import import org.springframework.security.core.Authentication;
+### 4. Mengubah fungsi get dan post di NoteController;
 Get
 ```
 @GetMapping
   public ResponseEntity<?> getNotes(Authentication authentication) {
-    String userId = authentication.getName();
+    String username = authentication.getName();
 
-    Set<NoteDto> userNotes = repo.findByUserId(userId)
-            .stream()
-            .map(note -> {
-                NoteDto noteDto = mdlMap.map(note, NoteDto.class);
-                noteDto.setUserId(userId); // Atur userId di NoteDto
-                return noteDto;
-            })
-            .collect(Collectors.toSet());
+    List<Note> noteList = repo.findAll();
 
-    return ResponseEntity.ok(userNotes);
+    Set<NoteDto> userNotes = noteList.stream()
+        .filter(note -> note.getUsername().equals(username)) // filter by username
+        .map(note -> {
+            NoteDto noteDto = mdlMap.map(note, NoteDto.class);
+            noteDto.setUsername(username); 
+            return noteDto;
+        })
+        .collect(Collectors.toSet());
+
+    if (!userNotes.isEmpty()) {
+        return ResponseEntity.ok(userNotes);
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tidak ada catatan ditemukan.");
+    }
   }
 ```
 
 Post
 ```
 @PostMapping
-  public ResponseEntity<?> saveNote(@RequestBody NoteDto body, Authentication authentication) {
+  public ResponseEntity<?> saveNote(@RequestBody RequestNoteDto body, Authentication authentication) {
     var newNote = mdlMap.map(body, Note.class);
-
-    // Mendapatkan username pengguna yang sedang login
-    String userId = authentication.getName();
-
-    // Menetapkan userId pada NoteDto
-    body.setUserId(userId);
-
-    // Menetapkan userId pada objek newNote juga
-    newNote.setUserId(userId);
-
     newNote = repo.save(newNote);
+
+    // System.out.println(newNote);
     return ResponseEntity.status(HttpStatus.CREATED).body(newNote);
   }
 ```
 
 # Hasil 
-User A hanya bisa melihat data user A<br/>
-<img width="638" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/0565bfe6-96ec-4963-b8a4-db306a95d98e"><br/>
-User B hanya bisa melihat data user B<br/>
-<img width="638" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/43c0bbd1-852f-4dd1-b807-79f80781cbd2">
+User A hanya bisa melihat data user A menggunakan token JWT<br/>
+<img width="636" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/02a7a6de-4985-41ec-ac3c-54367feee6d5"><br/>
+
+User B hanya bisa melihat data user B menggunakan token JWT<br/>
+<img width="638" alt="image" src="https://github.com/ameliadewi19/UACUserDataCase/assets/95133748/335ba951-3496-40b1-acbb-bb208083b094">
 
 
 
